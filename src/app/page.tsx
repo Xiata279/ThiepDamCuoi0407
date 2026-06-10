@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 
-const WEDDING_DATE = new Date("Jul 4, 2026 09:00:00").getTime();
+const WEDDING_DATE = new Date("Jul 5, 2026 09:00:00").getTime();
 
 function pad(n: number) { return String(n).padStart(2, "0"); }
 
@@ -172,7 +172,7 @@ export default function Home() {
                                 <h1 className="cover-names">
                                     Hùng Anh <span className="cover-amp">&amp;</span> Kiều Trinh
                                 </h1>
-                                <p className="cover-date">Thứ Bảy · 04 · 07 · 2026</p>
+                                <p className="cover-date">Chủ Nhật · 05 · 07 · 2026</p>
                                 <span className="cover-scroll">↓ cuộn xuống ↓</span>
                             </div>
                         </section>
@@ -209,11 +209,11 @@ export default function Home() {
                                     <div className="event-tag">Trân Trọng Kính Mời</div>
                                     <div className="event-name">Tiệc Cưới</div>
                                     <div className="event-divider" />
-                                    <div className="event-date">Thứ Bảy · 04 / 07 / 2026</div>
+                                    <div className="event-date">Chủ Nhật · 05 / 07 / 2026</div>
                                     <div className="event-venue">
-                                        <strong>Century Restaurant</strong><br />
-                                        Sảnh King · Tầng 2<br />
-                                        170 Đường Wừu, Phường Pleiku<br />
+                                        <strong>Vàng Son Restaurant</strong><br />
+                                        Sảnh Vàng Son 2<br />
+                                        548 Phạm Văn Đồng, Phường Thống Nhất<br />
                                         Tỉnh Gia Lai
                                     </div>
                                 </div>
@@ -307,7 +307,7 @@ export default function Home() {
                         {/* ── FOOTER ── */}
                         <footer className="site-footer">
                             <div className="footer-names">Hùng Anh &amp; Kiều Trinh</div>
-                            <p className="footer-dates">04 · 07 · 2026 &nbsp;</p>
+                            <p className="footer-dates">05 · 07 · 2026 &nbsp;</p>
                             <p className="footer-msg">Trân trọng cảm ơn sự hiện diện của bạn ♥</p>
                         </footer>
 
