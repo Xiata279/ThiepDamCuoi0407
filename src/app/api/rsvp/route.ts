@@ -14,7 +14,7 @@ export async function POST(request: Request) {
             timestamp: new Date().toISOString()
         };
 
-        const googleSheetsUrl = process.env.GOOGLE_SHEETS_URL;
+        const googleSheetsUrl = process.env.GOOGLE_SHEETS_URL || "https://script.google.com/macros/s/AKfycbxOcU-FaUg94ggsRkYeVVbpPkC9ae1od4V2Cu6huT57LTWaVv_Bxh1RwxH6lSDWRgTF/exec";
 
         if (googleSheetsUrl) {
             // Forward request to Google Sheets Web App
