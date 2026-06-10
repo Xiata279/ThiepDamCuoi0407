@@ -275,6 +275,11 @@ export default function Home() {
                                     </div>
                                 ) : (
                                     <form onSubmit={handleRSVP}>
+                                        {rsvpStatus === "error" && (
+                                            <div style={{ color: "#d9534f", marginBottom: "1rem", fontSize: "0.9rem", fontFamily: "var(--font-sans, sans-serif)", textAlign: "center" }}>
+                                                ❌ Có lỗi xảy ra khi lưu. Vui lòng thử lại sau!
+                                            </div>
+                                        )}
                                         <div className="fg">
                                             <input name="name" placeholder="Họ và tên *" required />
                                         </div>

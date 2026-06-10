@@ -2,20 +2,11 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
-// Define the shape of our RSVP data
-type RsvpData = {
-    name: string;
-    attendance: string;
-    guests: number;
-    message: string;
-    timestamp: string;
-};
-
 export async function POST(request: Request) {
     try {
         const body = await request.json();
         
-        const newEntry: RsvpData = {
+        const payload = {
             name: body.name,
             attendance: body.attendance,
             guests: parseInt(body.guests) || 0,
@@ -23,12 +14,30 @@ export async function POST(request: Request) {
             timestamp: new Date().toISOString()
         };
 
-        // Path to the JSON file where we will store data
+        const googleSheetsUrl = process.env.GOOGLE_SHEETS_URL;
+
+        if (googleSheetsUrl) {
+            // Forward request to Google Sheets Web App
+            const response = await fetch(googleSheetsUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            });
+
+            if (!response.ok) {
+                throw new Error(`Google Sheets API responded with status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            return NextResponse.json({ success: true, message: "RSVP saved to Google Sheets!" });
+        }
+
+        // Fallback for local development if GOOGLE_SHEETS_URL is not set
         const dataFilePath = path.join(process.cwd(), 'data.json');
+        let currentData = [];
         
-        let currentData: RsvpData[] = [];
-        
-        // Read existing data if the file exists
         if (fs.existsSync(dataFilePath)) {
             const fileContent = fs.readFileSync(dataFilePath, 'utf-8');
             try {
@@ -38,15 +47,12 @@ export async function POST(request: Request) {
             }
         }
         
-        // Append new entry
-        currentData.push(newEntry);
-        
-        // Write back to file
+        currentData.push(payload);
         fs.writeFileSync(dataFilePath, JSON.stringify(currentData, null, 2));
         
-        return NextResponse.json({ success: true, message: "RSVP saved successfully!" });
-    } catch (error) {
+        return NextResponse.json({ success: true, message: "RSVP saved locally (Development fallback)." });
+    } catch (error: any) {
         console.error("Error saving RSVP:", error);
-        return NextResponse.json({ success: false, message: "Failed to save RSVP" }, { status: 500 });
+        return NextResponse.json({ success: false, message: error.message || "Failed to save RSVP" }, { status: 500 });
     }
 }
