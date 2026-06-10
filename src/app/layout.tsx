@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Thiệp Cưới - Minh Hùng & Lan Anh",
+  title: "Thiệp Cưới - Hùng Anh & Kiều Trinh",
   description: "Thiệp cưới online",
 };
 
