@@ -538,18 +538,18 @@ body {
 }
 .event-time {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem;
+    font-size: 1.3rem;
     font-weight: 500;
     color: #4a3320;
     line-height: 1;
-    margin-bottom: 6px;
+    margin-bottom: 14px;
 }
 .event-date {
     font-size: 0.75rem;
     color: #9a8a75;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    margin-bottom: 16px;
+    margin-bottom: 4px;
 }
 .event-venue {
     font-size: 0.82rem;
